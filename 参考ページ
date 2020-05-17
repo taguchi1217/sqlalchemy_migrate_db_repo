@@ -1,0 +1,16 @@
+https://braitom.hatenablog.com/entry/2014/12/03/102451
+
+
+＜コマンド＞
+pip install sqlalchemy-migrate
+migrate create db_repo "RoadMap"　　　　#db_repo＝フォルダ名、"RoadMap"＝リポジトリ名
+cd db_repo
+python manage.py version_control postgresql+psycopg2://postgres:postgres@localhost/testdb2 .
+migrate manage .\manage.py --repository=. --url=postgresql+psycopg2://postgres:postgres@localhost/testdb2
+python .\manage.py script "Add Human Table"
+python .\manage.py script "Add Age Column"
+python .\manage.py test
+python .\manage.py upgrade       # 最新へアップグレード
+python .\manage.py downgrade x   # バージョンxへダウングレード
+python .\manage.py db_version    # DBの現在バージョン
+python .\manage.py version　     # リポジトリの最新バージョン
